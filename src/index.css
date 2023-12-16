@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+html {
+  font-family: "GT Walsheim Pro", sans-serif;
+}
+
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+button {
+  font-family: "GT Walsheim Pro", sans-serif;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+.pattern {
+  background-image: url("./assets/images/pattern.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.layout-child {
+  width: calc(100vw - 320px);
+}
+
+@media screen and (max-width: 1280px) {
+  .layout-child {
+    width: calc(100vw - 300px);
+  }
+}
+
+/* @media screen and (max-width: 1024px) {
+  .layout-child {
+    width: calc(100vw - 280px);
+  }
+} */
+
+.main-menu .active button {
+  background-color: #1d7cc0;
+  color: white;
+}
+
+li a.active {
+  background-color: #219EF9 !important;
+  color: white !important;
+}
+
+li a.active a {
+  color: white;
+}
+
+.custom-table {
+  border-collapse: separate;
+  border-spacing: 0;
+
+  /* Apply border radius to the whole table */
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden; /* To clip the rounded corners */
+}
+
+.custom-table thead th:first-child {
+  border-top-left-radius: 10px !important;
+}
+
+/* Apply border radius to the last <th> in the <thead> */
+.custom-table thead th:last-child {
+  border-top-right-radius: 10px !important;
+}
+
+/* Autocomplete */
+.MuiInputBase-root.MuiOutlinedInput-root {
+  border-radius: 8px !important;
+  font-family: "GT Walsheim Pro", sans-serif;
+  font-size: 14px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+#combo-box-demo-label {
+  font-family: "GT Walsheim Pro", sans-serif;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  padding-top: 2px !important;
+}
+
+#combo-box-demo.MuiInputBase-input.MuiOutlinedInput-input {
+  padding: 5px 4px 3px 8px !important;
+  font-weight: 500 !important;
+}
+
+#combo-box-demo-dashboard.MuiInputBase-input.MuiOutlinedInput-input {
+  padding: 4px 4px 2px 8px !important;
+  font-weight: 500 !important;
+}
+
+label.MuiFormLabel-root.MuiInputLabel-root {
+  font-family: "GT Walsheim Pro", sans-serif;
+  font-size: 15px !important;
+}
+
+.MuiAutocomplete-root,
+div,
+label,
+p,
+span {
+  font-family: "GT Walsheim Pro", sans-serif;
+}
+
+.MuiAutocomplete-popper li {
+  font-family: "GT Walsheim Pro", sans-serif;
+  font-size: 14px !important;
+}
+
+.statut {
+  width: 120px !important;
+}
+
+.modal-transfert {
+  overflow-y: unset !important;
+}
+
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper {
+  background: rgb(233, 233, 233) !important;
+}
+
+.vertical-timeline-element-content {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  /* align-items: center !important; */
+}
+
+.vertical-timeline-element-content p {
+  margin-bottom: 10px !important;
+}

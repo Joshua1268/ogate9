@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('GTWalsheimPro-Regular.eot');
+    src: local('GT Walsheim Pro Regular'), local('GTWalsheimPro-Regular'),
+        url('GTWalsheimPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('GTWalsheimPro-Regular.woff2') format('woff2'),
+        url('GTWalsheimPro-Regular.woff') format('woff'),
+        url('GTWalsheimPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('GTWalsheimPro-UltraBold.eot');
+    src: local('GT Walsheim Pro Ultra Bold'), local('GTWalsheimPro-UltraBold'),
+        url('GTWalsheimPro-UltraBold.eot?#iefix') format('embedded-opentype'),
+        url('GTWalsheimPro-UltraBold.woff2') format('woff2'),
+        url('GTWalsheimPro-UltraBold.woff') format('woff'),
+        url('GTWalsheimPro-UltraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('GTWalsheimPro-Bold.eot');
+    src: local('GT Walsheim Pro Bold'), local('GTWalsheimPro-Bold'),
+        url('GTWalsheimPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('GTWalsheimPro-Bold.woff2') format('woff2'),
+        url('GTWalsheimPro-Bold.woff') format('woff'),
+        url('GTWalsheimPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('GTWalsheimPro-Medium.eot');
+    src: local('GT Walsheim Pro Medium'), local('GTWalsheimPro-Medium'),
+        url('GTWalsheimPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('GTWalsheimPro-Medium.woff2') format('woff2'),
+        url('GTWalsheimPro-Medium.woff') format('woff'),
+        url('GTWalsheimPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('GTWalsheimPro-Black.eot');
+    src: local('GT Walsheim Pro Black'), local('GTWalsheimPro-Black'),
+        url('GTWalsheimPro-Black.eot?#iefix') format('embedded-opentype'),
+        url('GTWalsheimPro-Black.woff2') format('woff2'),
+        url('GTWalsheimPro-Black.woff') format('woff'),
+        url('GTWalsheimPro-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
