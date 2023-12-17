@@ -117,10 +117,10 @@ const handleEditSubmit = async (event) => {
           <thead>
             <tr className="bg-primary/10 h-12">
               <th className="px-4 py-2">Nom</th>
-              <th className="px-4 py-2">Prenoms</th>
+              <th className="px-4 py-2">Numéro</th>
               <th className="px-4 py-2">Email</th>
+              <th className="px-4 py-2">Type de compte</th>
               <th className="px-4 py-2">Etat</th>
-              <th className="px-4 py-2">Profil</th>
               <th className="px-4 py-2">Actions</th>
             </tr>
           </thead>
@@ -128,15 +128,15 @@ const handleEditSubmit = async (event) => {
   {Array.isArray(data) && data.length > 0 ? data.map((item) => (
     <tr key={item.id} className="bg-gray-100">
       <td className="border px-4 py-2">{item.nom}</td>
-      <td className="border px-4 py-2">{item.prenoms}</td>
+      <td className="border px-4 py-2">{item.numero}</td>
       <td className="border px-4 py-2">{item.email}</td>
+      <td className="border px-4 py-2">{item.typeCompte}</td>
       <td className="border px-4 py-2">
         {item.enabled ? 
           <span>🟢</span> /* Icon active */ : 
           <span>🔴</span> /* Icon desactive*/
         }
       </td>
-      <td className="border px-4 py-2">{item.profil}</td>
 
       <td className="border px-4 py-2 text-center">
         
