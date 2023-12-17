@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/Joshua1268/ogate0.git/static/css/main.c0cd403d.css",
+    "main.js": "/Joshua1268/ogate0.git/static/js/main.861387e5.js",
+    "static/media/logo_white.svg": "/Joshua1268/ogate0.git/static/media/logo_white.9e5565091dd6b947b3869836b5854fa5.svg",
+    "static/media/GTWalsheimPro-Bold.eot": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Bold.7b4147fb0a41836f213f.eot",
+    "static/media/GTWalsheimPro-Bold.ttf": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Bold.2dbf49e9fcb548837711.ttf",
+    "static/media/GTWalsheimPro-Black.eot": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Black.d609a70eeac378ca8d43.eot",
+    "static/media/GTWalsheimPro-Regular.eot": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Regular.3579e898550a8cc59ccc.eot",
+    "static/media/GTWalsheimPro-Black.ttf": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Black.2dc24aec84cddc57c649.ttf",
+    "static/media/GTWalsheimPro-Regular.ttf": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Regular.1fd3cd7ade0f79b2152a.ttf",
+    "static/media/GTWalsheimPro-Medium.eot": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Medium.14369c3a451c82dc1923.eot",
+    "static/media/GTWalsheimPro-Medium.ttf": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Medium.bc56cfc10feb515d6622.ttf",
+    "static/media/GTWalsheimPro-UltraBold.eot": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-UltraBold.b2b39a3c028051c8c0eb.eot",
+    "static/media/GTWalsheimPro-UltraBold.ttf": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-UltraBold.d4a45619bb8913d18a18.ttf",
+    "static/media/GTWalsheimPro-Black.woff": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Black.d1a05b37fac1e43eae61.woff",
+    "static/media/GTWalsheimPro-Bold.woff": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Bold.6ead5fc9d23b21a10d0a.woff",
+    "static/media/GTWalsheimPro-Regular.woff": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Regular.1668df1c1c97770e0490.woff",
+    "static/media/GTWalsheimPro-Medium.woff": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Medium.56bd75a22ae9d40f0b48.woff",
+    "static/media/GTWalsheimPro-UltraBold.woff": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-UltraBold.5e96467338cfd6bff836.woff",
+    "static/media/GTWalsheimPro-Black.woff2": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Black.3fa5ee7f8e647720d2fb.woff2",
+    "static/media/GTWalsheimPro-Bold.woff2": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Bold.6b113f6b3bd165884e16.woff2",
+    "static/media/GTWalsheimPro-Regular.woff2": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Regular.6aff6f11d3d29930c9fe.woff2",
+    "static/media/GTWalsheimPro-UltraBold.woff2": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-UltraBold.a18671e52c3903d28cee.woff2",
+    "static/media/GTWalsheimPro-Medium.woff2": "/Joshua1268/ogate0.git/static/media/GTWalsheimPro-Medium.ad6b035f63b8e9185266.woff2",
+    "static/media/pattern.svg": "/Joshua1268/ogate0.git/static/media/pattern.021263cecb5b7d9a5a22.svg",
+    "index.html": "/Joshua1268/ogate0.git/index.html",
+    "main.c0cd403d.css.map": "/Joshua1268/ogate0.git/static/css/main.c0cd403d.css.map",
+    "main.861387e5.js.map": "/Joshua1268/ogate0.git/static/js/main.861387e5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c0cd403d.css",
+    "static/js/main.861387e5.js"
+  ]
+}
