@@ -143,7 +143,7 @@ const handleEditSubmit = async (event) => {
         <button onClick={() => handleDelete(item.id)} className=" hover:bg-red-600 text-black font-bold py-1 px-2 rounded">
           <FaTrash />
         </button>
-        <button onClick={() => changeEtat(item.id)} className=" hover:bg-red-600 text-black font-bold py-1 px-2 rounded">
+        <button onClick={() => changeEtat(item.id)} className=" hover:bg-primary text-black font-bold py-1 px-2 rounded">
         <MdModeEdit />
         </button>
       </td>

@@ -14,18 +14,18 @@ const Information = () => {
   const [page, setPage] = useState(0); // La page commence à 0
 
   useEffect(() => {
-    axios.get(`http://185.98.139.246:9090/ogatemanagement-api/admin/rechercherlisteinformationsadditionnellesparpage?page=${page}&taille=20`) // Param est vide et taille est 20
+    axios.get(`http://185.98.139.246:9090/ogatemanagement-api/admin/rechercherlisteinformationsadditionnellesparpage?page=${page}&param=&taille=20`) // Param est vide et taille est 20
       .then(response => {
-        setData(response.data.donnee.informationsadditionnelles); // Modifiez cette ligne pour extraire typebiens
+        setData(response.data.donnee.informations); // Modifiez cette ligne pour extraire typebiens
       })
       .catch(error => {
         console.error('There was an error!', error);
       });
   }, [page]);
   const fetchData = () => {
-    axios.get(`http://185.98.139.246:9090/ogatemanagement-api/admin/rechercherlisteinformationsadditionnellesparpage?page=${page}&taille=20`) // Param est vide et taille est 20
+    axios.get(`http://185.98.139.246:9090/ogatemanagement-api/admin/rechercherlisteinformationsadditionnellesparpage?page=${page}&param=&taille=20`) // Param est vide et taille est 20
       .then(response => {
-        setData(response.data.donnee.typebiens); // Modifiez cette ligne pour extraire typebiens
+        setData(response.data.donnee.informations); // Modifiez cette ligne pour extraire typebiens
       })
       .catch(error => {
         console.error('There was an error!', error);
@@ -116,20 +116,28 @@ const handleEditSubmit = async (event) => {
           </tr>
         </thead>
         <tbody>
-          {data.length > 0 ? data.map((item, index) => (
+        {Array.isArray(data) && data.length > 0 ? (
+          data.map((item, index) => (
             <tr key={index} className="bg-gray-100">
               <td className="border px-4 py-2">{item.designation}</td>
-              <td className="border px-4 py-2">{item.typeInfoAddionnelle}</td>
+              <td className="border px-4 py-2">{item.typeInfoAdditionnelle}</td>
               <td className="border px-4 py-2 text-center">
                 <button onClick={() => handleEdit(item)} className=" hover:bg-primary text-black font-bold py-1 px-2 rounded mr-2">
                 <FaEdit />
                 </button>
                 <button onClick={() => handleDelete(item.id)} className=" hover:bg-red-600 text-black font-bold py-1 px-2 rounded">
-                  🗑️
+                <FaTrash />
                 </button>
               </td>
             </tr>
-          )) : <tr><td colSpan="3" className="border px-4 py-2 font-medium text-red-500  text-center">Aucun élément trouvé</td></tr>}
+           ))
+           ) : (
+             <tr>
+               <td colSpan="3" className="border px-4 py-2 font-medium text-red-500 text-center">
+                 {data.length === 0 ? 'Aucun élément trouvé' : 'Chargement en cours...'}
+               </td>
+             </tr>
+           )}
         </tbody>
       </table>
       {showForm && (

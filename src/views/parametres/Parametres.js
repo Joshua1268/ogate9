@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import BaseLayout from "../../layout/BaseLayout";
 import TypesPieces from "./TypePiece";
-import Pays from "./Typedocument";
 import Information from "./Information";
 import Specialite from "./Specialite";
-import Typedocument from "./Typedocument";
+import TypeDocument from "./TypeDocument";
 const Parametres = () => {
   const [view, setView] = useState("TYPE_PIECE");
   
@@ -34,7 +33,7 @@ const Parametres = () => {
                   ? "bg-primary text-white"
                   : "bg-gray-100 text-black"
               }`}
-              onClick={() => setView("PAYS")}
+              onClick={() => setView("TYPE_DOCUMENT")}
             >
               Type de document
             </button>
@@ -64,8 +63,8 @@ const Parametres = () => {
           <div>
             { view === "TYPE_PIECE" ? (
               <TypesPieces />
-            )  : view === "TYPED_DOCUMENT" ? (
-              <Typedocument/>
+            )  : view === "TYPE_DOCUMENT" ? (
+              <TypeDocument/>
             )  :view ==="INFORMATION" ?(
               <Information />
             ) :view === "SPECIALITE" ?(
