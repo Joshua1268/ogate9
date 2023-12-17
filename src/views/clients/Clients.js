@@ -118,7 +118,6 @@ const handleEditSubmit = async (event) => {
             <tr className="bg-primary/10 h-12">
               <th className="px-4 py-2">Nom</th>
               <th className="px-4 py-2">Numéro</th>
-              <th className="px-4 py-2">Email</th>
               <th className="px-4 py-2">Type de compte</th>
               <th className="px-4 py-2">Etat</th>
               <th className="px-4 py-2">Actions</th>
@@ -129,7 +128,6 @@ const handleEditSubmit = async (event) => {
     <tr key={item.id} className="bg-gray-100">
       <td className="border px-4 py-2">{item.nom}</td>
       <td className="border px-4 py-2">{item.numero}</td>
-      <td className="border px-4 py-2">{item.email}</td>
       <td className="border px-4 py-2">{item.typeCompte}</td>
       <td className="border px-4 py-2">
         {item.enabled ? 

@@ -90,7 +90,7 @@ const Sidebar = () => {
 
         <div className="absolute left-3 lg:left-5 xl:left-6 bottom-5 w-full lg:w-10/12">
           <details className="dropdown mb- dropdown-top dropdown-end w-full">
-            <summary className="m-1 btn w-full flex items-center justify-start h-14 rounded-lg gap-x-2 bg-gray-100 border border-gray-200 px-2">
+            <summary className="m-1 btn w-full flex items-center justify-start h-20 rounded-lg gap-x-2 bg-gray-100 border border-gray-200 px-2">
               <div className="w-10 h-10 bg-white text-gray-600 rounded-full flex items-center justify-center">
                 <User2 size={21} className="hidden lg:inline" />
                 <User2 size={10} className="inline lg:hidden" />
