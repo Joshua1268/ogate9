@@ -10,7 +10,7 @@ const Workers = () => {
     <BaseLayout>
       <div className="w-full py-8 px-5">
         <h1 className="text-3xl text-black font-bold">
-          Ménagères et Entreprises
+          Publicités
         </h1>
 
         <div className="mt-10">
@@ -22,17 +22,9 @@ const Workers = () => {
                 }`}
               onClick={() => setView('ENTREPRISE')}
             >
-              Entreprises
+              Publicités
             </button>
-            <button
-              className={`w-content h-full px-4 rounded-lg ${view === "MENAGERE"
-                ? "bg-primary text-white"
-                : "bg-gray-100 text-black"
-                }`}
-              onClick={() => setView('MENAGERE')}
-            >
-              Ménagères
-            </button>
+            
           </div>
 
           {view === "ENTREPRISE" ? <Entreprise /> : <MenagereIndependante />}
