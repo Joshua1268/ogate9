@@ -104,14 +104,14 @@ const handleEditSubmit = async (event) => {
       <table className="w-full table-auto">
         <thead>
           <tr className="bg-primary/10 h-12">
-            <th className="px-4 py-2">Designation</th>
+            <th className="px-4 py-2 ">Designation</th>
             <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
           {data.length > 0 ? data.map((item, index) => (
             <tr key={index} className="bg-gray-100">
-              <td className="border px-4 py-2">{item.designation}</td>
+              <td className="border px-4 py-2 text-center">{item.designation}</td>
               <td className="border px-4 py-2 text-center">
                 <button onClick={() => handleEdit(item)} className="hover:bg-primary hover:primary text-black font-bold py-1 px-2 rounded mr-2">
                 <FaEdit />

@@ -119,8 +119,8 @@ const handleEditSubmit = async (event) => {
         {Array.isArray(data) && data.length > 0 ? (
           data.map((item, index) => (
             <tr key={index} className="bg-gray-100">
-              <td className="border px-4 py-2">{item.designation}</td>
-              <td className="border px-4 py-2">{item.typeInfoAdditionnelle}</td>
+              <td className="border px-4 py-2 text-center">{item.designation}</td>
+              <td className="border px-4 py-2 text-center">{item.typeInfoAdditionnelle}</td>
               <td className="border px-4 py-2 text-center">
                 <button onClick={() => handleEdit(item)} className=" hover:bg-primary text-black font-bold py-1 px-2 rounded mr-2">
                 <FaEdit />
