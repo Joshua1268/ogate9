@@ -58,7 +58,7 @@ const Sidebar = () => {
               </span>
             </button>
           </NavLink>
-          <NavLink to="/clients">
+          <NavLink to="/partenaires">
             <button className="bg-white w-full px-3 py-2.5 rounded-lg flex items-center gap-x-2 text-gray-600 font-medium">
               <UserSquare2 size={22} strokeWidth={2} />
               <span className="text-left text-sm lg:text-base">Partenaires</span>

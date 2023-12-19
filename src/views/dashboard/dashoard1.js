@@ -357,7 +357,7 @@ const Dashboard = () => {
                 className="select select-bordered select-sm font-medium h-10"
               >
                 <option selected value="">
-                  Tous les pays
+                  Tous les clients
                 </option>
                 {paysListe &&
                   paysListe.map((pays) => (
@@ -481,7 +481,7 @@ const Dashboard = () => {
                 </span>
               </div>
               <p className="text-lg text-gray-400 font-normal">
-                Entreprises inscrites
+                Clients inscrits
               </p>
             </div>
             <div className="w-full h-fit rounded-lg bg-white drop-shadow-sm px-5 py-3">
@@ -506,7 +506,7 @@ const Dashboard = () => {
                 </span>
               </div>
               <p className="text-lg text-gray-400 font-normal">
-                Menagères inscrites
+                Utilisateurs inscrits
               </p>
             </div>
             <div className="w-full h-fit rounded-lg bg-white drop-shadow-sm px-5 py-3">

@@ -13,6 +13,7 @@ import Commandes from "../views/commandes/Commandes";
 import Utilisateurs from "../views/utilisateurs/Utilisateurs";
 import Indentifiant from "../views/identifiant/Indentifiant";
 import Publications from "../views/publications/Publications";
+import Partenaires from "../views/partenaires/Partenaires";
 
 
 
@@ -73,6 +74,10 @@ const Router = createHashRouter([
       {
         path: "/identifiant",
         element: <Indentifiant />,
+      },
+      {
+        path:"/partenaires",
+        element: <Partenaires />,
       },
       {
         path: "/parametres",
