@@ -5,7 +5,7 @@ import BaseLayout from "../../layout/BaseLayout";
 import immobImage from '../../assets/images/immob.jpg';
 import mobiImage from '../../assets/images/mobi.jpg';
 
-function FacebookPost() {
+function Partenaires() {
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState([]);
 
@@ -57,4 +57,4 @@ function FacebookPost() {
   );
 }
 
-export default FacebookPost;
+export default Partenaires;
