@@ -6,10 +6,10 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const Typepiece = () => {
   const [data, setData] = useState([]);
-  const [form, setForm] = useState({ id: '', designation: '' });
+  const [form, setForm] = useState({ id: '', designation: '',isMeuble: false, documentAssocieted: false });
   const [message, setMessage] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [editForm, setEditForm] = useState({ id: '', designation: '' }); // Ajoutez un état pour le formulaire de modification
+  const [editForm, setEditForm] = useState({ id: '', designation: '', isMeuble: false, documentAssocieted: false}); // Ajoutez un état pour le formulaire de modification
   const [showEditForm, setShowEditForm] = useState(false); // Ajoutez un état pour afficher/masquer le formulaire de modification
   const [page, setPage] = useState(0); // La page commence à 0
 
@@ -38,12 +38,12 @@ const Typepiece = () => {
 
   const handleSubmit = (event) => {
   event.preventDefault();
-  axios.post(`http://185.98.139.246:9090/ogatemanagement-api/admin/enregistrertypebien`, form) // Supprimez ${form.id} d'ici
+  axios.post(`http://185.98.139.246:9090/ogatemanagement-api/admin/enregistrertypebien`, form) 
     .then(response => {
       setMessage({ text: 'Enregistré avec succès', type: 'success' });
       setShowForm(false);
       setTimeout(() => setMessage(null), 4000); // Faites disparaître le message après 4 secondes
-      setForm({ id: '', designation: '' }); // Réinitialisez le formulaire
+      setForm({ id: '', designation: '',isMeuble:false,documentAssocieted: false }); // Réinitialisez le formulaire
       fetchData(); // Actualisez les données
     })
     .catch(error => {
@@ -60,7 +60,7 @@ const handleEditSubmit = async (event) => {
     setMessage({ text: 'Modifié avec succès', type: 'success' });
     setShowEditForm(false);
     setTimeout(() => setMessage(null), 4000); // Faites disparaître le message après 4 secondes
-    setEditForm({ id: '', designation: '' }); // Réinitialisez le formulaire de modification
+    setEditForm({ id: '', designation: '',isMeuble: false, documentAssocieted: false }); // Réinitialisez le formulaire de modification
     fetchData(); // Actualisez les données
   } catch (error) {
     setMessage({ text: 'Erreur lors de la modification', type: 'error' });
@@ -72,9 +72,21 @@ const handleEditSubmit = async (event) => {
   const handleChange = (event) => {
     setForm({ ...form, designation: event.target.value });
   };
+  const handleChangeMeuble = (event) => {
+    setForm({ ...form, isMeuble: event.target.checked });
+  };
+  const handleChangeDocument = (event) => {
+    setForm({ ...form, documentAssocieted: event.target.checked });
+  };
 
   const handleEditChange = (event) => {
     setEditForm({ ...editForm, designation: event.target.value }); // Utilisez setEditForm ici
+  };
+  const handleEditChangeMeuble = (event) => {
+    setForm({ ...form, isMeuble: event.target.checked });
+  };
+  const handleEditChangeDocument = (event) => {
+    setForm({ ...form, documentAssocieted: event.target.checked});
   };
 
   const handleEdit = (item) => {
@@ -145,6 +157,23 @@ const handleEditSubmit = async (event) => {
                     onChange={handleChange}
                     className="input input-bordered w-full"
                   />
+                  <div class="flex items-center mt-6">
+                    <input
+                      type="checkbox"
+                      checked={form.isMeuble}
+                      onChange={handleChangeMeuble}
+                      className="form-checkbox h-5 w-5 text-indigo-600"
+                    />
+                    <label for="checkbox1" class="ml-2 text-gray-700">Est meublé</label>
+
+                    <input
+                      type="checkbox"
+                      checked={form.documentAssocieted}
+                      onChange={handleChangeDocument}
+                      className="form-checkbox h-5 w-5 text-indigo-600 ml-20"
+                    />
+                    <label for="checkbox1" class="ml-2 text-gray-700">Documents associés</label>
+                  </div>
                 </div>
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">Soumettre</button>
               </form>
@@ -173,6 +202,24 @@ const handleEditSubmit = async (event) => {
                     onChange={handleEditChange}
                     className="input input-bordered w-full"
                   />
+
+                  <div class="flex items-center mt-6">
+                    <input
+                      type="checkbox"
+                      checked={form.isMeuble}
+                      onChange={handleEditChangeMeuble}
+                      className="form-checkbox h-5 w-5 text-indigo-600"
+                    />
+                    <label for="checkbox1" class="ml-2 text-gray-700">Est meublé</label>
+
+                    <input
+                      type="checkbox"
+                      checked={form.documentAssocieted}
+                      onChange={handleEditChangeDocument}
+                      className="form-checkbox h-5 w-5 text-indigo-600 ml-20"
+                    />
+                    <label for="checkbox1" class="ml-2 text-gray-700">Documents associés</label>
+                  </div>
                 </div>
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">Soumettre</button>
               </form>
