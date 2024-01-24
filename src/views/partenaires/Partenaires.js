@@ -56,5 +56,4 @@ function Partenaires() {
     </BaseLayout>
   );
 }
-
 export default Partenaires;
