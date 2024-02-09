@@ -42,7 +42,7 @@ const Sidebar = () => {
               </span>
             </button>
           </NavLink>
-          <NavLink to="/workers">
+          <NavLink to="/publicite">
             <button className="bg-white w-full px-3 py-2.5 rounded-lg flex items-center gap-x-2 text-gray-600 font-medium">
               <Face2Icon sx={{ fontSize: 20 }} />
               <span className="text-left text-sm lg:text-base">

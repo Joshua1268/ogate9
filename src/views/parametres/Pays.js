@@ -2,31 +2,40 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MdChevronLeft } from 'react-icons/md';
 import {MdChevronRight} from 'react-icons/md';
-import { FaEdit, FaTrash } from 'react-icons/fa';
 
-const Information = () => {
+const Pays = () => {
   const [data, setData] = useState([]);
-  const [form, setForm] = useState({ id: '', designation: '',typeInfoAddionnelle:'' });
+  const [form, setForm] = useState({ id: '', designation: '' });
   const [message, setMessage] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [editForm, setEditForm] = useState({ id: '', designation: '',typeInfoAddionnelle:'' }); // Ajoutez un état pour le formulaire de modification
+  const [editForm, setEditForm] = useState({ id: '', designation: '' }); // Ajoutez un état pour le formulaire de modification
   const [showEditForm, setShowEditForm] = useState(false); // Ajoutez un état pour afficher/masquer le formulaire de modification
   const [page, setPage] = useState(0); // La page commence à 0
   const [isLoading, setIsLoading] = useState(false);
 
-  
-  const fetchData = () => {
+  useEffect(() => {
     setIsLoading(true);
-    axios.get(`http://185.98.139.246:9090/ogatemanagement-api/admin/rechercherlisteinformationsadditionnellesparpage?page=${page}&param=&taille=20`) // Param est vide et taille est 20
+    axios.get(`http://185.98.139.246:9090/ogatemanagement-api/admin/rechercherlistetypedocumentsparpage?page=${page}&param=&taille=20`)
       .then(response => {
-        setData(response.data.donnee.informations); // Modifiez cette ligne pour extraire info
+        setData(response.data.donnee.typeDocuments); // Modifier pour extraire typeDocuments
         setIsLoading(false);
       })
       .catch(error => {
         console.error('There was an error!', error);
         setIsLoading(false);
       });
+  }, [page]);
+  
+  const fetchData = () => {
+    axios.get(`http://185.98.139.246:9090/ogatemanagement-api/admin/rechercherlistetypedocumentsparpage?page=${page}&param=&taille=20`)
+      .then(response => {
+        setData(response.data.donnee.typeDocuments); // Modifier pour extraire typeDocuments
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+      });
   };
+  
   
   useEffect(() => {
     fetchData();
@@ -34,12 +43,12 @@ const Information = () => {
 
   const handleSubmit = (event) => {
   event.preventDefault();
-  axios.post(`http://185.98.139.246:9090/ogatemanagement-api/admin/enregistrertypeinfoadditionnelle`, form)
+  axios.post(`http://185.98.139.246:9090/ogatemanagement-api/admin/enregistrertypedocument`, form) // Supprimez ${form.id} d'ici
     .then(response => {
       setMessage({ text: 'Enregistré avec succès', type: 'success' });
       setShowForm(false);
       setTimeout(() => setMessage(null), 4000); // Faites disparaître le message après 4 secondes
-      setForm({ id: '', designation: '',typeInfoAddionnelle:'' }); // Réinitialisez le formulaire
+      setForm({ id: '', designation: '' }); // Réinitialisez le formulaire
       fetchData(); // Actualisez les données
     })
     .catch(error => {
@@ -52,11 +61,11 @@ const Information = () => {
 const handleEditSubmit = async (event) => {
   event.preventDefault();
   try {
-    await axios.post(`http://185.98.139.246:9090/ogatemanagement-api/admin/enregistrertypeinfoadditionnelle`, editForm); // Utilisez editForm ici
+    await axios.post(`http://185.98.139.246:9090/ogatemanagement-api/admin/enregistrertypedocument`, editForm); // Utilisez editForm ici
     setMessage({ text: 'Modifié avec succès', type: 'success' });
     setShowEditForm(false);
     setTimeout(() => setMessage(null), 4000); // Faites disparaître le message après 4 secondes
-    setEditForm({ id: '', designation: '',typeInfoAddionnelle:'' }); // Réinitialisez le formulaire de modification
+    setEditForm({ id: '', designation: '' }); // Réinitialisez le formulaire de modification
     fetchData(); // Actualisez les données
   } catch (error) {
     setMessage({ text: 'Erreur lors de la modification', type: 'error' });
@@ -68,15 +77,9 @@ const handleEditSubmit = async (event) => {
   const handleChange = (event) => {
     setForm({ ...form, designation: event.target.value });
   };
-  const handleChangeTypeInfoAddionnelle = (event) => {
-    setForm({ ...form, typeInfoAddionnelle: event.target.value });
-  };
 
   const handleEditChange = (event) => {
     setEditForm({ ...editForm, designation: event.target.value }); // Utilisez setEditForm ici
-  };
-  const handleEditChangeTypeInfoAddionnelle = (event) => {
-    setForm({ ...form, typeInfoAddionnelle: event.target.value });
   };
 
   const handleEdit = (item) => {
@@ -85,7 +88,7 @@ const handleEditSubmit = async (event) => {
   };
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://185.98.139.246:9090/ogatemanagement-api/admin/supprimerinfoadditionnelle/${id}`);
+      await axios.delete(`http://185.98.139.246:9090/ogatemanagement-api/admin/supprimertypedocument/${id}`);
       setMessage({ text: 'Supprimé avec succès', type: 'success' });
       setTimeout(() => setMessage(null), 4000); // Faites disparaître le message après 4 secondes
       fetchData(); // Actualisez les données
@@ -107,7 +110,6 @@ const handleEditSubmit = async (event) => {
         <thead>
           <tr className="bg-primary/10 h-12">
             <th className="px-4 py-2">Designation</th>
-            <th className="px-4 py-2">Type information</th>
             <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
@@ -124,31 +126,31 @@ const handleEditSubmit = async (event) => {
         </div>
       </td>
     </tr>
-  ): 
-        (Array.isArray(data) && data.length > 0 ? (
-          data.map((item, index) => (
-            <tr key={index} className="bg-gray-100">
-              <td className="border px-4 py-2 text-center">{item.designation}</td>
-              <td className="border px-4 py-2 text-center">{item.typeInfoAdditionnelle}</td>
-              <td className="border px-4 py-2 text-center">
-                <button onClick={() => handleEdit(item)} className=" hover:bg-primary text-black font-bold py-1 px-2 rounded mr-2">
-                <FaEdit />
-                </button>
-                <button onClick={() => handleDelete(item.id)} className=" hover:bg-red-600 text-black font-bold py-1 px-2 rounded">
-                <FaTrash />
-                </button>
-              </td>
-            </tr>
-           ))
-           ) : (
-             <tr>
-               <td colSpan="3" className="border px-4 py-2 font-medium text-red-500 text-center">
-                 {data.length === 0 ? 'Aucun élément trouvé' : 'Chargement en cours...'}
-               </td>
-             </tr>
-           )
-          )}
-        </tbody>
+  ):     
+  (Array.isArray(data) && data.length > 0 ? (
+    data.map((item, index) => (
+      <tr key={index} className="bg-gray-100">
+        <td className="border px-4 py-2">{item.designation}</td>
+        <td className="border px-4 py-2 text-center" >
+          <button onClick={() => handleEdit(item)} className="bg-primary hover:bg-blue-700 text-black font-bold py-1 px-2 rounded mr-2">
+            ✏️
+          </button>
+          <button onClick={() => handleDelete(item.id)} className="bg-red-400 hover:bg-red-600 text-black font-bold py-1 px-2 rounded">
+            🗑️
+          </button>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan="3" className="border px-4 py-2 font-medium text-red-500 text-center">
+        {data.length === 0 ? 'Aucun élément trouvé' : 'Chargement en cours...'}
+      </td>
+    </tr>
+  )
+  )}
+</tbody>
+
       </table>
       {showForm && (
         <>
@@ -172,22 +174,6 @@ const handleEditSubmit = async (event) => {
                     className="input input-bordered w-full"
                   />
                 </div>
-                <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text">Type information</span>
-                </label>
-                <select
-                  value={form.typeInfoAddionnelle}
-                  onChange={handleChangeTypeInfoAddionnelle}
-                  className="select select-bordered w-full"
-                  required
-                >
-                 <option value=""></option>
-                  <option value="SUR_BIEN">sur bien</option>
-                  <option value="SUR_QUARTIER">sur quartier</option>
-                </select>
-              </div>
-
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">Soumettre</button>
               </form>
             </div>
@@ -216,23 +202,6 @@ const handleEditSubmit = async (event) => {
                     className="input input-bordered w-full"
                   />
                 </div>
-
-                <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text">Type information</span>
-                </label>
-                <select
-                  value={form.typeInfoAddionnelle}
-                  onChange={handleEditChangeTypeInfoAddionnelle}
-                  className="select select-bordered w-full"
-                  required
-                >
-                   <option value=""></option>
-                  <option value="SUR_BIEN">sur bien</option>
-                  <option value="SUR_QUARTIER">sur quartier</option>
-                </select>
-              </div>
-
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">Soumettre</button>
               </form>
             </div>
@@ -253,7 +222,7 @@ const handleEditSubmit = async (event) => {
         </div>
       )}
       <div className="flex justify-center mt-4">
-      <button onClick={() => setPage(page > 0 ? page - 1 : page)} className="bg-primary hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:bg-brand-200 flex items-center justify-center rounded-full p-2 text-1xl text-white transition duration-200 hover:cursor-pointer dark:text-white">
+        <button onClick={() => setPage(page > 0 ? page - 1 : page)} className="bg-primary hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:bg-brand-200 flex items-center justify-center rounded-full p-2 text-1xl text-white transition duration-200 hover:cursor-pointer dark:text-white">
         <MdChevronLeft/>
         </button>
         <span className="text-2xl">{page + 1}</span>
@@ -265,4 +234,4 @@ const handleEditSubmit = async (event) => {
   );
 };
 
-export default Information;
+export default Pays;

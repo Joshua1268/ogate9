@@ -5,7 +5,7 @@ import Login from "../views/login/Login";
 import NotFound from "../views/404/NotFound";
 import ForgetPassword from "../views/forget-password/ForgetPassword";
 import Dashboard from "../views/dashboard/Dashboard";
-import Workers from "../views/workers/Workers";
+import Publicite from "../views/publicite/Publicite";
 import Clients from "../views/clients/Clients";
 import Parametres from "../views/parametres/Parametres";
 import HistoriqueTransaction from "../views/historique-transaction/HistoriqueTransaction";
@@ -52,8 +52,8 @@ const Router = createHashRouter([
         element:<Publications />,
       },
       {
-        path: "/workers",
-        element: <Workers />,
+        path: "/publicite",
+        element: <Publicite />,
       },
       {
         path: "/clients",
