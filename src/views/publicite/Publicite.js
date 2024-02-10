@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { MdChevronLeft } from 'react-icons/md';
-import {MdChevronRight} from 'react-icons/md';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import BaseLayout from '../../layout/BaseLayout';
 
 const Publicite = () => {
   const [data, setData] = useState([]);
-  const [form, setForm] = useState({ id: '', designation: '' });
+  const [form, setForm] = useState({ file: null }); // Définir form comme un état avec une propriété "file"
   const [message, setMessage] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [editForm, setEditForm] = useState({ id: '', designation: '' }); // Ajoutez un état pour le formulaire de modification
-  const [showEditForm, setShowEditForm] = useState(false); // Ajoutez un état pour afficher/masquer le formulaire de modification
-  const [page, setPage] = useState(0); // La page commence à 0
+  const [editForm, setEditForm] = useState({ id: '', file: null }); // Modifier pour inclure "file"
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = () => {
     setIsLoading(true);
-    axios.get(`
-    http://185.98.139.246:9090/ogatemanagement-api/admin/rechercherpublicitesparpage?page=${page}&taille=20`)
+    axios.get(`http://185.98.139.246:9090/ogatemanagement-api/admin/rechercherpublicitesparpage?page=${page}&taille=20`)
       .then(response => {
-        setData(response.data.donnee.publicite); // Modifier pour extraire typeDocuments
+        setData(response.data.donnee.publications);
         setIsLoading(false);
       })
       .catch(error => {
@@ -28,53 +26,57 @@ const Publicite = () => {
         setIsLoading(false);
       });
   };
-  
-  
+
   useEffect(() => {
     fetchData();
   }, [page]);
 
   const handleSubmit = (event) => {
-  event.preventDefault();
-  axios.post(`http://185.98.139.246:9090/ogatemanagement-api/admin/enregistrerpublicite`, form) // Supprimez ${form.id} d'ici
-    .then(response => {
-      setMessage({ text: 'Enregistré avec succès', type: 'success' });
-      setShowForm(false);
-      setTimeout(() => setMessage(null), 4000); // Faites disparaître le message après 4 secondes
-      setForm({ id: '', designation: '' }); // Réinitialisez le formulaire
-      fetchData(); // Actualisez les données
-    })
-    .catch(error => {
-      setMessage({ text: 'Erreur lors de l\'ajout', type: 'error' });
-      setTimeout(() => setMessage(null), 4000); // Faites disparaître le message après 4 secondes
-      console.error('There was an error!', error);
-    });
-};
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('file', form.file);
 
-const handleEditSubmit = async (event) => {
-  event.preventDefault();
-  try {
-    await axios.post(`http://185.98.139.246:9090/ogatemanagement-api/admin/modifierpublicite`, editForm); // Utilisez editForm ici
-    setMessage({ text: 'Modifié avec succès', type: 'success' });
-    setShowEditForm(false);
-    setTimeout(() => setMessage(null), 4000); // Faites disparaître le message après 4 secondes
-    setEditForm({ id: '', designation: '' }); // Réinitialisez le formulaire de modification
-    fetchData(); // Actualisez les données
-  } catch (error) {
-    setMessage({ text: 'Erreur lors de la modification', type: 'error' });
-    setTimeout(() => setMessage(null), 4000); // Faites disparaître le message après 4 secondes
-    console.error('There was an error!', error);
-  }
-};
-
-  const handleChange = (event) => {
-    setForm({ ...form, designation: event.target.value });
+    axios.post(`http://185.98.139.246:9090/ogatemanagement-api/admin/enregistrerpublicite`, formData)
+      .then(response => {
+        setMessage({ text: 'Enregistré avec succès', type: 'success' });
+        setShowForm(false);
+        setTimeout(() => setMessage(null), 4000);
+        setForm({ file: null }); // Réinitialiser le formulaire après soumission
+        fetchData();
+      })
+      .catch(error => {
+        setMessage({ text: 'Erreur lors de l\'ajout', type: 'error' });
+        setTimeout(() => setMessage(null), 4000);
+        console.error('There was an error!', error);
+      });
   };
+
+  const handleEditSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('file', editForm.file);
+
+    try {
+      await axios.post(`http://185.98.139.246:9090/ogatemanagement-api/admin/modifierpublicite`, formData);
+      setMessage({ text: 'Modifié avec succès', type: 'success' });
+      setShowEditForm(false);
+      setTimeout(() => setMessage(null), 4000);
+      setEditForm({ id: '', file: null }); // Réinitialiser le formulaire après soumission
+      fetchData();
+    } catch (error) {
+      setMessage({ text: 'Erreur lors de la modification', type: 'error' });
+      setTimeout(() => setMessage(null), 4000);
+      console.error('There was an error!', error);
+    }
+  };
+  const handleChange = (event) => {
+    setForm({ ...form, file: event.target.files[0] });
+  };
+
 
   const handleEditChange = (event) => {
-    setEditForm({ ...editForm, designation: event.target.value }); // Utilisez setEditForm ici
+    setEditForm({ ...editForm, file: event.target.files[0] }); // Mettre à jour le fichier sélectionné pour la modification
   };
-
   const handleEdit = (item) => {
     setEditForm(item); // Utilisez setEditForm ici
     setShowEditForm(true); // Affichez le formulaire de modification
@@ -125,13 +127,20 @@ const handleEditSubmit = async (event) => {
   (Array.isArray(data) && data.length > 0 ? (
     data.map((item, index) => (
       <tr key={index} className="bg-gray-100">
-        <td className="border px-4 py-2 text-center">{item.designation}</td>
+        <td className="border px-4 py-2 text-center">
+          {item.fichier && (
+            <p>{item.fichier.nom}</p>
+          )}
+          {item.fichier && item.fichier.typeFichier === 'IMAGE' && (
+            <img src={`http://185.98.139.246:9090${item.fichier.chemin}`} alt={item.fichier.nom} className="h-20 w-auto mx-auto" /> 
+          )}
+        </td>
         <td className="border px-4 py-2 text-center" >
           <button onClick={() => handleEdit(item)} className=" hover:bg-primary text-black font-bold py-1 px-2 rounded mr-2">
-          <FaEdit />
+            <FaEdit />
           </button>
           <button onClick={() => handleDelete(item.id)} className="hover:bg-red-600 text-black font-bold py-1 px-2 rounded">
-          <FaTrash />
+            <FaTrash />
           </button>
         </td>
       </tr>
@@ -158,13 +167,11 @@ const handleEditSubmit = async (event) => {
               <form className="py-4" onSubmit={handleSubmit}>
                 <div className="form-control w-full">
                   <label className="label">
-                    <span className="label-text">Désignation</span>
+                    <span className="label-text">Fichiers</span>
                   </label>
                   <input
-                    type="text"
-                    placeholder="Désignation"
-                    value={form.designation}
-                    onChange={handleChange}
+                    type="file" // Utilisez le type "file" pour sélectionner un fichier
+                    onChange={handleChange} // Utilisez handleChange pour gérer les changements de fichier
                     className="input input-bordered w-full"
                   />
                 </div>
@@ -189,12 +196,11 @@ const handleEditSubmit = async (event) => {
                     <span className="label-text">Désignation</span>
                   </label>
                   <input
-                    type="text"
-                    placeholder="Désignation"
-                    value={editForm.designation}
-                    onChange={handleEditChange}
+                    type="file" // Utilisez le type "file" pour sélectionner un fichier
+                    onChange={handleEditChange} // Utilisez handleEditChange pour gérer les changements de fichier
                     className="input input-bordered w-full"
                   />
+
                 </div>
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">Soumettre</button>
               </form>
